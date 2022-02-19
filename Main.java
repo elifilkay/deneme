@@ -1,86 +1,29 @@
-import java.util.Scanner;
-
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Çalışanlar Programına hoşgeldiniz...");
-        String işlemler="İşlemler..\n"+
-               " 1.Yazılımcı İşlemleri\n"+
-               " 2.Yönetici İşlemleri\n"+
-                " 3.Çıkış";
-        System.out.println("************************");
-        System.out.println(işlemler);
-        System.out.println("*************************");
-        while (true){
-            System.out.print("İşlem seçiniz:");
-            String işlem=scanner.next();
-            if(işlem.equals("3")){
-                System.out.println("Programdan çıkılıyor");
-                break;
-            }
-            else if (işlem.equals("1")){
-                Yazılımcı yazılımcı=new Yazılımcı("ELİF İLKAY","ÖZKAN",567,"Java,Phyton,C#");
-                String yazılımcı_işlemleri="1.Format at \n"+
-                        "2.Bilgileri göster\n"+
-                        "3.Çıkış";
-                System.out.println(yazılımcı_işlemleri);
-                while (true){
-                    System.out.println("İşlem seçiniz: ");
-                    String a= scanner.next();
-                    if(a.equals("3")){
-                        System.out.println("Yazılımcı işlemlerinden çıkılıyor..");
-                        break;
-                    }
-                    else if (a.equals("1")){
-                        System.out.println("İşletim sitemi:");
-                        String işletim_sistemi=scanner.next();
-                        yazılımcı.formatAt(işletim_sistemi);
-                    }
-                    else if(a.equals("2")){
-                        yazılımcı.bilgileriGöster();
-                    }
-                    else{
-                        System.out.println("Geçersiz işlem");
-                    }
+        public static void main(String[] args) {
+            Teacher t1 = new Teacher("Mahmut Hoca", "TRH", "535 ");
+            Teacher t2 = new Teacher("Cafer Hoca", "FZK", "000");
+            Teacher t3 = new Teacher("Esma", "BIO", "1234");
 
-                }
+            Course tarih = new Course("Tarih", "101", "TRH");
+            tarih.addTeacher(t1);
 
-            }
-            else if(işlem.equals("2")){
-                System.out.println("Yöneetici işlemlerine hoşgeldiniz");
-                Yönetici yönetici=new Yönetici("Arda","Sönmez",789,5);
-                String yönetici_işlemleri="1.Bilgileri Göster\n"+
-                        "2.Zam Yap\n"+
-                        "3.Çıkış";
-                System.out.println(yönetici_işlemleri);
-                while (true){
-                    System.out.print("İşlem seçiniz:");
-                    String b=scanner.next();
-                    if(b.equals("1")){
-                        yönetici.bilgileriGöster();
-                    }
-                    else if (b.equals("2")){
-                        System.out.println("Yöneticinin ne kadar zam yapmasını istiyorsunuz: ");
-                        int zam= scanner.nextInt();
-                        yönetici.zamYap(zam);
-                    }
-                    else if (b.equals("3")){
-                        System.out.println("Yönetici işlemlerinden çıkılıyor...");
-                        break;
-                    }
-                    else{
-                        System.out.println("Geçersiz işlem");
-                    }
-                }
+            Course fizik = new Course("Fizik", "102", "FZK");
+            fizik.addTeacher(t2);
 
-            }
-            else{
-                System.out.println("Geçersiz işlem..");
-            }
+            Course biyoloji = new Course("Biyoloji", "101", "BIO");
+            biyoloji.addTeacher(t3);
 
+            Student s1 = new Student("İrem", "3421", "12/B", tarih, fizik, biyoloji);
+            s1.addBulkExamNote(35, 90, 65);
+            s1.addSozluExamNote(78,96,20);
+            s1.printNote();
+            s1.isPass();
 
-
+            Student s2 = new Student("İlkay", "54", "12/D", tarih, fizik, biyoloji);
+            s2.addBulkExamNote(90, 100, 99);
+            s2.addSozluExamNote(20,45,65);
+            s2.printNote();
+            s2.isPass();
         }
-
     }
-}
+
