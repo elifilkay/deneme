@@ -1,29 +1,81 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
-        public static void main(String[] args) {
-            Teacher t1 = new Teacher("Mahmut Hoca", "TRH", "535 ");
-            Teacher t2 = new Teacher("Cafer Hoca", "FZK", "000");
-            Teacher t3 = new Teacher("Esma", "BIO", "1234");
 
-            Course tarih = new Course("Tarih", "101", "TRH");
-            tarih.addTeacher(t1);
+    private static int studentCounter = 0;
 
-            Course fizik = new Course("Fizik", "102", "FZK");
-            fizik.addTeacher(t2);
+    public static void main(String[] args) {
 
-            Course biyoloji = new Course("Biyoloji", "101", "BIO");
-            biyoloji.addTeacher(t3);
 
-            Student s1 = new Student("İrem", "3421", "12/B", tarih, fizik, biyoloji);
-            s1.addBulkExamNote(35, 90, 65);
-            s1.addSozluExamNote(78,96,20);
-            s1.printNote();
-            s1.isPass();
+                Scanner scanner = new Scanner(System.in);
 
-            Student s2 = new Student("İlkay", "54", "12/D", tarih, fizik, biyoloji);
-            s2.addBulkExamNote(90, 100, 99);
-            s2.addSozluExamNote(20,45,65);
-            s2.printNote();
-            s2.isPass();
-        }
+                ArrayList<Integer> grades = new ArrayList<Integer>();
+
+                boolean loopCheck = true;
+
+                int minValue = 101;
+                int maxValue = -1;
+                int sum = 0;
+                double avarage = 0;
+
+                System.out.println("Welcome to grade calculation program...");
+
+                while(true) {
+
+                    System.out.println("Please enter the grade of the student:(if you want to leave please press -1) ");
+                    int inputGrade = scanner.nextInt();
+
+                    if (inputGrade == -1) {
+                        System.out.println("Leaving....");
+                        System.out.println(studentCounter + " is the amount of the grades which you entered");
+                        break;
+                    }
+
+                    else if (inputGrade <= 100 && 0 <= inputGrade) {
+
+
+
+                        grades.add(inputGrade);
+
+                        studentCounter++;
+                    }
+
+                    else {
+                        System.out.println("Invalid grade. Grades must be on interval from 0 to 100");
+                        System.out.println("*****************");
+                        continue;
+                    }
+
+                }
+
+                if (!grades.isEmpty()) {
+
+                    for (Integer a: grades) {
+
+
+                        sum += a;
+
+                        if (minValue > a) {
+                            minValue = a;
+                        }
+
+                        if (maxValue < a) {
+                            maxValue = a;
+                        }
+
+
+                    }
+
+                    avarage = (double)sum/studentCounter;
+
+                    System.out.println("Avarage is : " + avarage);
+                    System.out.println("Max grade is : " + maxValue);
+                    System.out.println("Min grade is: " + minValue);
+
+                }
+
+
+
     }
-
+}
